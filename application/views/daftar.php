@@ -59,6 +59,7 @@
     text-align: center;
     transition: 0.2s ease;
     margin: 5px;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.538);
     
 }
 
@@ -71,11 +72,13 @@
 .btn-register:hover {
     background-color: #800000;
     color: #ffffff;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.538);
 }
 
 .btn-login:hover {
     background-color: #2980b9;
     color: #ffffff;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.538);
 
 .btn-register:focus {
     outline: none;
