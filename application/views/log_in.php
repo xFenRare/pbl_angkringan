@@ -16,7 +16,7 @@
             text-align: center;
             font-size: 50px;
             font-weight: lighter;
-            color: #fff;
+            color: #ffffff;
         }
         .container {
             margin: 0 auto;
@@ -49,7 +49,7 @@
         }
 
         .btn-login,
-        .btn-register
+        .regis
         {
             background-color: #eaeaea;
             color: #000000;
@@ -63,9 +63,11 @@
             display: inline-block;
             box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.538); 
             transition: 0.2s ease;
+            text-align: center;
+            
         }
 
-        .btn-register:hover
+        .regis:hover
         {
             background-color: #52ff00;
             color: #ffffff;
@@ -77,7 +79,8 @@
             margin-bottom: 10px;
             text-decoration: none; 
             display: inline-block;
-            box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.538); 
+            box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.538);
+            
         }
 
         .btn-login:hover
@@ -95,18 +98,14 @@
             box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.538);
         }
         .regis{
-            text-decoration: none;
-            color: #000000;
-            transition: 0.2s ease; 
-            display: block;
+            
             
             
         }
 
         .regis:hover
         {
-            text-decoration: none;
-            color: #ffffff;
+            
         }
         .btn-forgot{
             color: black;
@@ -128,9 +127,9 @@
 <div class="container">
     
     <form id="loginForm" action="process_login.php" method="post">
-    <div class="input-group">
-    <span style="padding-left: 18px;" class="input-group-text"><i class="far fa-user"></i></span>
-    <input type="text" name="username" placeholder="Username" class="form-control">
+        <div class="input-group">
+        <span style="padding-left: 18px;" class="input-group-text"><i class="far fa-user"></i></span>
+        <input type="text" name="username" placeholder="Username" class="form-control">
 </div>
 <div class="input-group" style="margin-top: -5px;">
     <span class="input-group-text" id="show-password"><i class="fas fa-eye-slash"></i></span>
@@ -139,14 +138,13 @@
 
         <a href="forgot_password.php" class="btn-forgot"><p>Lupa password?</p></a>
         <button type="submit" onclick="checkLogin()" class="btn-login">LOGIN</button>
-        <button class="btn-register"><a href="register.php" class="regis">DAFTAR</a></button>
+        <button type="button" class="regis" onclick="window.location.href='daftar';">DAFTAR</button>
+
     </form>
 
 </div>
 
 <script>
-
-
     document.getElementById("show-password").addEventListener("click", function() {
         var passwordInput = document.getElementById("password");
         var eyeIcon = this.querySelector("i");
