@@ -157,7 +157,7 @@
     
       <a class="tombol_confirm" type="button" href="log_in"  id="confirmLogout">ya, aku mau Keluar</a>
       <button class="tombol_batal" id="cancelLogout" onclick="closeModal()">gak jadi deh</button>
-
+        <p>aasslamualaikum</p>
     </div>
   </div>
 </div>
