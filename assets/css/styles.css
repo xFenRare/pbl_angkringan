@@ -1,0 +1,285 @@
+        /*BODY*//*BODY*//*BODY*/
+        /*BODY*//*BODY*//*BODY*/
+        /*BODY*//*BODY*//*BODY*/
+        body.main_body
+        {
+            background-color: #7c826b;
+        }
+
+        .slide_menu
+        {
+            height: 100vh;
+            width: 180px;
+            position: fixed;
+            background-color: #dbd4ac;
+            transition: 0.5s ease;
+            transform: translateX(-180px);
+            top: 150px;
+        }
+
+        .menu_content
+        {
+            padding-top: 20px;
+        }
+
+        .slide_menu ul li 
+        {
+            margin-top: 15px;
+        }
+
+        *
+        {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        input
+        {
+            display: none;
+            visibility: hidden;
+            -webkit-appearance: none;
+        }
+
+        .toggle
+        {
+            position: absolute;
+            height: 50px;
+            width: 50px;
+            top: 80px;
+            left: 15px;
+            z-index: 1;
+            cursor: pointer;
+            border-radius: 2px;
+            
+        }
+
+        .toggle .common
+        {
+            position: absolute;
+            height: 3px;
+            width: 28px;
+            background-color: #000000;
+            border-radius: 50px;
+            transition: 0.3s ease;
+        }
+
+        .toggle .top_line
+        {
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .toggle .middle_line
+        {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .toggle .bottom_line
+        {
+            top: 70%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        input:checked ~ .toggle .top_line
+        {
+            left: 8.5px;
+            top: 21px;
+            width: 30px;
+            transform: rotate(45deg);
+        }
+
+        input:checked ~ .toggle .bottom_line
+        {
+            left: 8.5px;
+            top: 21px;
+            width: 30px;
+            transform: rotate(-45deg);
+        }
+
+        input:checked ~ .toggle .middle_line
+        {
+            opacity: 0;
+            transform: translateX(20px);
+        }
+
+        input:checked ~ .slide_menu
+        {
+            transform: translateX(0);
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+        }
+
+
+        /*LOGOUT*//*LOGOUT*//*LOGOUT*/
+        /*LOGOUT*//*LOGOUT*//*LOGOUT*/
+        /*LOGOUT*//*LOGOUT*//*LOGOUT*/
+        
+        .logout-option 
+        {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+            box-shadow: 5px 5px 5px rgb(0, 0, 0); 
+          }
+          
+          .logout-option_content 
+          {
+            background-color: #ffffff;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 400px;
+            text-align: center;
+            border-radius: 10px;
+            font-weight: bold;
+            box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.538);
+
+          }
+          
+          button
+          {
+            margin: 10px;
+            padding: 10px 20px;
+            cursor: pointer;
+            border: none;
+            display: inline-block;
+            box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.538);
+            transition: 0.1s ease;
+            color: #ffffff;
+            
+          }
+
+          .tombol_confirm
+          {
+            background-color: #ff0000;
+            color: #ffffff;
+            border-radius: 5px;
+            padding: 10px 10px;
+            text-decoration: none;
+            font-weight: lighter;
+            box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.538);
+            transition: 0.1s ease;
+            
+          }
+
+          .tombol_batal
+          {
+            background-color: #00a20b;
+            color: #ffffff;
+            border-radius: 5px;
+          }
+
+          .tombol_confirm:hover
+          {
+            background-color: #9f0000;
+            color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.538);
+          }
+
+          .tombol_batal:hover
+          {
+            background-color: #007108;
+            color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.538);
+          }
+
+
+        /*TEXT*//*TEXT*//*TEXT*/
+        /*TEXT*//*TEXT*//*TEXT*/
+        /*TEXT*//*TEXT*//*TEXT*/
+
+       
+        
+        div.main_header
+        {
+            background-color: #ede6c4;
+            margin: 0px;
+            height: 150px;
+            
+        }
+        
+        p.main_text_segmen_menu
+        {
+            font-size: 50px;
+            font-weight: lighter;
+            padding-left: 180px;
+            width: 475px;
+            color: #ffffff;
+            position: relative;
+            left: 20px;
+        }
+
+        ul li
+        {
+            list-style: none;
+        }
+
+        ul li a
+        {
+            color: #000000;
+            font-weight: 500;
+            padding: 15px 0;
+            display: block;
+            text-transform: capitalize;
+            text-decoration: none;
+            transition: 0.2s ease-out;
+            margin-left: -35px;
+            
+            
+        }
+
+        ul li:hover a
+        {
+            color: #ffffff;
+            background-color: #656a57;
+            padding-left: 7px;
+            box-shadow: -5px 5px 5px rgb(255, 255, 255);
+            
+            
+        }
+
+        ul li a i
+        {
+            width: 40px;
+            text-align: center;
+            z-index: 2;
+            line-height: 40px;
+            
+        }
+        
+        /*GAMBAR*//*GAMBAR*//*GAMBAR*/
+        /*GAMBAR*//*GAMBAR*//*GAMBAR*/
+        /*GAMBAR*//*GAMBAR*//*GAMBAR*/
+
+        img.main_title
+        {
+            width: auto;
+            height: 70px;
+            position: absolute; 
+            top: 5%;
+            padding-left: 15px;
+            justify-content: center;
+            
+        }
+
+        div.container_main_title
+        {
+            text-align: center;
+            padding-right: 20%;
+        }
+
+       
+        
