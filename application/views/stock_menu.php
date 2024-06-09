@@ -18,16 +18,19 @@
 
 <body class="main_body">
 
+<div class="header_container">
     <div class="main_header">
          
 
-        <div class=container_main_title>
-            
-            <img class="main_title" src="<?php echo base_url('assets/images/main_title.png'); ?>" />
-        
-        </div>
-
-    </div>
+         <div class=container_main_title>
+             
+             <img class="main_title" src="<?php echo base_url('assets/images/main_title.png'); ?>" />
+         
+         </div>
+ 
+     </div>
+</div>
+    
 
 
     
@@ -46,16 +49,17 @@
         <span class="bottom_line common"></span>
     </div>
     
+    <p class="main_text_segmen_menu"><i class="fa fa-archive" ></i> STOCK MENU</p>
         <div class="slide_menu">
 
             <div class="menu_content">
-        
-                <p class="main_text_segmen_menu">STOCK MENU</p>
+                
                     <ul>
             
                         <li><a href="index" onclick="closeMenu()"><i class="fa fa-bars" ></i>MENU</a></li>
                         <li><a href="stock_menu" onclick="closeMenu()"> <i class="fa fa-archive" ></i>STOCK MENU</a></li>
                         <li><a href="pesanan" onclick="closeMenu()"> <i class="fa fa-bookmark" ></i>PESANAN</a></li>
+                        <li><a href="riwayat" onclick="closeMenu()"> <i class="fas fa-clipboard-list" ></i>RIWAYAT</a></li>
                         
                         <li><a href="#" onclick="showLogoutModal()" id="logoutButton"> <i class="fa fa-sign-out" ></i>LOG OUT</a></li>
                     </ul>
@@ -64,6 +68,7 @@
     </label>
 
     <script>
+        
           function saveMenuStatus()
         {
             var isChecked = document.getElementById('toggleMenu').checked;
@@ -162,24 +167,34 @@
   </div>
 </div>
 
+<label class="card_container">
+    
+    <?php foreach ($grouped_menu as $menu_name => $menu_items) { ?>
+        <?php foreach ($menu_items as $d) { ?>
+            <a href="#" class="card_stockmenu">
+                <h3 class="nama_menu"><?php echo $d['NAMA_MENU']; ?></h3>
+        
+                <table class="table table-bordered">
+                    <tr>
+                        <td>
+                            <?php
+                                echo $d['FOTO_MENU'];
+                                echo $d['STOCK_MENU']; 
+                            ?>
+                        </td>
+                
+                    </tr>
+                
+                <?php } ?>
+            </table>
+        <h4 class="harga_menu">Rp<?php echo number_format($d['HARGA_MENU'], 0, ',', '.'); ?></h4>
+    
+    <?php } ?>
+    </a>
+    
+</label>
 
-<table border=1>
-    <tr>
-        <th>ID MENU</th><th>NAMA</th><th>HARGA</th><th>KUANTITAS</th><th>VISUAL</th>
-    </tr>
-
-<?php foreach ($menu as $d) { ?>
-
-<tr>
-    <td> <?php echo $d['id_menu'] ?> </td>
-    <td> <?php echo $d['nama_menu'] ?> </td>
-    <td> <?php echo $d['harga_menu'] ?> </td>
-    <td> <?php echo $d['stock_menu'] ?> </td>
-    <td> <?php echo $d['foto_menu'] ?> </td>
-</tr>
-
-<?php } ?>
-</table>
+<p class="Copyright">Copyright © Kelompok-4 PBL 2024</p>
 
 
 </body>

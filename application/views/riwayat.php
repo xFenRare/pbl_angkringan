@@ -50,7 +50,7 @@
         <span class="bottom_line common"></span>
     </div>
     
-    <p class="main_text_segmen_menu"><i class="fa fa-bookmark" ></i> PESANAN </p>
+    <p class="main_text_segmen_menu"><i class="fas fa-clipboard-list" ></i> RIWAYAT </p>
         <div class="slide_menu">
 
             <div class="menu_content">
@@ -168,60 +168,11 @@
   </div>
 </div>
 
-<div class="input_container">
-    <input type="text" class="input_nama_menu" placeholder="Nama Menu">
-    <input type="text" class="input_tambah_jumlah" placeholder="Jumlah">
-<a href="#" class="tombol_tambah_pesanan"><i class="fa fa-plus-square"></i> Tambah</a>
-    </div>
 
-<label class="label_pesanan">
-    <div class="container_tabel_pesanan">
-        <table class="tabel_pesanan">
+<p>Belum ada Fitur ini</p>
 
-            <tr>
-                <td>
-                    <p>Pesanan</p>
-                </td>
-                <td>
-                    <p>Jumlah</p>
-                </td>
-                <td>
-                    <p>Hapus</p>
-                </td>
-            </tr>
 
-            <tr>
-                <td>
-                    <p class="isi_tabel_pesanan">(Nama Makanan)</p>
-                </td>
-                <td>
-                    <p class="isi_tabel_pesanan">(Harga Makanan)</p>
-                </td>
-                <td>
-                    <p><a href="#"><i class="fa fa-trash"></i></a></p>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <p class="isi_tabel_harga">Total Bayar</p>
-                </td>
-                <td>
-                    <p class="isi_tabel_total_harga">Rp. </p>
-                </td>
-                <td>
-                    
-                </td>
-            </tr>
-
-            </table>
-            </div>
-            
-            
-            </label>
-            
-            
-            <p class="Copyright">Copyright © Kelompok-4 PBL 2024</p>
+<p class="Copyright">Copyright © Kelompok-4 PBL 2024</p>
 
 </body>
 </html>
