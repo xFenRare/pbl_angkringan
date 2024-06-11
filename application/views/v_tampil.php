@@ -98,7 +98,7 @@
 
         document.getElementById('confirmLogout').addEventListener('click', function() 
         {
-            window.location.href = "<?php echo base_url('log_in.php'); ?>";
+            window.location.href = "<?php echo base_url('login'); ?>";
         });
 
        

@@ -108,7 +108,8 @@
 <body>
 <h2 class="login">DAFTAR</h2>
 <div class="container">
-    <form action="process_daftar.php" method="post" id="daftar-form">
+    <!-- Update form action to the new controller/method -->
+    <form action="<?php echo base_url('daftar/process_daftar'); ?>" method="post" id="daftar-form">
         <div class="input-group">
             <span class="input-group-text"><i class="far fa-user"></i></span>
             <input type="text" id="nama_angkringan" name="nama_angkringan" placeholder="Nama Angkringan" class="form-control" required>
@@ -130,7 +131,7 @@
             <input type="text" id="no_telp_angkringan" name="no_telp_angkringan" placeholder="No Telp" class="form-control" required>
         </div>
         <button type="submit" class="btn-login">DAFTAR</button>
-        <button onclick="window.location.href='log_in';" class="btn-register"><i class="fas fa-arrow-left"></i> BACK</a></button>
+        <button onclick="window.location.href='<?php echo base_url('login'); ?>';" class="btn-register"><i class="fas fa-arrow-left"></i> BACK</button>
     </form>
 </div>
 

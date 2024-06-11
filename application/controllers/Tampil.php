@@ -40,9 +40,9 @@ class Tampil extends CI_controller
         
     }
 
-    public function daftar()
+    public function v_daftar()
     {
-        $this->load->view('daftar');
+        $this->load->view('v_daftar');
         $this->load->helper('url', 'file');
         
     }

@@ -98,7 +98,7 @@
 
         document.getElementById('confirmLogout').addEventListener('click', function() 
         {
-            window.location.href = "<?php echo base_url('log_in.php'); ?>";
+            window.location.href = "<?php echo base_url('v_login.php'); ?>";
         });
 
        
@@ -138,7 +138,7 @@
 
         function logout() 
         {
-            window.location.href = "<?php echo base_url('log_in.php'); ?>";
+            window.location.href = "<?php echo base_url('v_login.php'); ?>";
         }
 
         function closeModal() 
@@ -155,7 +155,7 @@
     <p>Apakah Anda yakin ingin Log Out dari Akun ini?</p>
     <div>
     
-      <a class="tombol_confirm" type="button" href="log_in"  id="confirmLogout">ya, aku mau Keluar</a>
+      <a class="tombol_confirm" type="button" href=""  id="confirmLogout">ya, aku mau Keluar</a>
       <button class="tombol_batal" id="cancelLogout" onclick="closeModal()">gak jadi deh</button>
 
     </div>
