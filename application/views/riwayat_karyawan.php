@@ -50,18 +50,18 @@
         <span class="bottom_line common"></span>
     </div>
     
-    <p class="main_text_segmen_menu"><i class="fa fa-bookmark" ></i> PESANAN </p>
+    <p class="main_text_segmen_menu"><i class="fas fa-clipboard-list" ></i> RIWAYAT </p>
         <div class="slide_menu">
 
             <div class="menu_content">
                 
                     <ul>
             
-                        <li><a href="index" onclick="closeMenu()"><i class="fa fa-bars" ></i>MENU</a></li>
-                        <li><a href="stock_menu" onclick="closeMenu()"> <i class="fa fa-archive" ></i>STOCK MENU</a></li>
-                        <li><a href="pesanan" onclick="closeMenu()"> <i class="fa fa-bookmark" ></i>PESANAN</a></li>
-                        <li><a href="riwayat" onclick="closeMenu()"> <i class="fas fa-clipboard-list" ></i>RIWAYAT</a></li>
-
+                    <li><a href="index" onclick="closeMenu()"><i class="fa fa-bars" ></i>MENU</a></li>
+                        <li><a href="stock_menu_karyawan" onclick="closeMenu()"> <i class="fa fa-archive" ></i>STOCK MENU</a></li>
+                        <li><a href="pesanan_karyawan" onclick="closeMenu()"> <i class="fa fa-bookmark" ></i>PESANAN</a></li>
+                        <li><a href="riwayat_karyawan" onclick="closeMenu()"> <i class="fas fa-clipboard-list" ></i>RIWAYAT</a></li>
+                        
                         <li><a href="#" onclick="showLogoutModal()" id="logoutButton"> <i class="fa fa-sign-out" ></i>LOG OUT</a></li>
                     </ul>
             </div>
@@ -168,60 +168,41 @@
   </div>
 </div>
 
-<div class="input_container">
-    <input type="text" class="input_nama_menu" placeholder="Nama Menu">
-    <input type="text" class="input_tambah_jumlah" placeholder="Jumlah">
-<a href="#" class="tombol_tambah_pesanan"><i class="fa fa-plus-square"></i> Tambah</a>
-    </div>
+<p class="nama_pembeli_riwayat">Nama Pembeli</p>
+<p class="edit_riwayat">Edit</p>
+<p class="hapus_riwayat">Hapus</p>
+<label class="container_lagi">
+    <label class="container_label_riwayat">
+        <label class="label_riwayat">
+            <div class="container_tabel_riwayat">
+                <table class="tabel_riwayat">
+    
+                    <tr>
+    
+                        <td>
+                            <p class="isi_nama_pembeli">(Nama Pembeli)</p>
+                        </td>
+    
+                        <td>
+                            <a class="tombol_edit" href="#"><i class="fa fa-pencil"></i></a>
+                        </td>
+    
+                        <td>
+                            <a class="tombol_edit" href="#"><i class="fa fa-trash"></i></a>
+                        </td>
+    
+                    </tr>
 
-<label class="label_pesanan">
-    <div class="container_tabel_pesanan">
-        <table class="tabel_pesanan">
-
-            <tr>
-                <td>
-                    <p>Pesanan</p>
-                </td>
-                <td>
-                    <p>Jumlah</p>
-                </td>
-                <td>
-                    <p>Hapus</p>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <p class="isi_tabel_pesanan">(Nama Makanan)</p>
-                </td>
-                <td>
-                    <p class="isi_tabel_pesanan">(Harga Makanan)</p>
-                </td>
-                <td>
-                    <p><a href="#"><i class="fa fa-trash"></i></a></p>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <p class="isi_tabel_harga">Total Bayar</p>
-                </td>
-                <td>
-                    <p class="isi_tabel_total_harga">Rp. </p>
-                </td>
-                <td>
-                    
-                </td>
-            </tr>
-
-            </table>
+                </table>
             </div>
-            
-            
-            </label>
-            
-            
-            <p class="Copyright">Copyright © Kelompok-4 PBL 2024</p>
+    
+    
+        </label>
+    </label>
+
+</label>
+
+    <p class="Copyright">Copyright © Kelompok-4 PBL 2024</p>
 
 </body>
 </html>

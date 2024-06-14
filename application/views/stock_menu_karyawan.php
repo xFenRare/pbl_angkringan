@@ -19,7 +19,6 @@
 <body class="main_body">
 
 <div class="header_container">
-    
     <div class="main_header">
          
 
@@ -50,17 +49,17 @@
         <span class="bottom_line common"></span>
     </div>
     
-    <p class="main_text_segmen_menu"><i class="fas fa-clipboard-list" ></i> RIWAYAT </p>
+    <p class="main_text_segmen_menu"><i class="fa fa-archive" ></i> STOCK MENU <a href="tambah_menu" class="tombol_tambah_menu"> TAMBAH MENU</a></p>
         <div class="slide_menu">
 
             <div class="menu_content">
                 
                     <ul>
             
-                        <li><a href="index" onclick="closeMenu()"><i class="fa fa-bars" ></i>MENU</a></li>
-                        <li><a href="stock_menu" onclick="closeMenu()"> <i class="fa fa-archive" ></i>STOCK MENU</a></li>
-                        <li><a href="pesanan" onclick="closeMenu()"> <i class="fa fa-bookmark" ></i>PESANAN</a></li>
-                        <li><a href="riwayat" onclick="closeMenu()"> <i class="fas fa-clipboard-list" ></i>RIWAYAT</a></li>
+                    <li><a href="index" onclick="closeMenu()"><i class="fa fa-bars" ></i>MENU</a></li>
+                        <li><a href="stock_menu_karyawan" onclick="closeMenu()"> <i class="fa fa-archive" ></i>STOCK MENU</a></li>
+                        <li><a href="pesanan_karyawan" onclick="closeMenu()"> <i class="fa fa-bookmark" ></i>PESANAN</a></li>
+                        <li><a href="riwayat_karyawan" onclick="closeMenu()"> <i class="fas fa-clipboard-list" ></i>RIWAYAT</a></li>
 
                         <li><a href="#" onclick="showLogoutModal()" id="logoutButton"> <i class="fa fa-sign-out" ></i>LOG OUT</a></li>
                     </ul>
@@ -68,8 +67,8 @@
         </div>
     </label>
 
-    
     <script>
+        
           function saveMenuStatus()
         {
             var isChecked = document.getElementById('toggleMenu').checked;
@@ -168,11 +167,28 @@
   </div>
 </div>
 
-
-<p>Belum ada Fitur ini</p>
-
+<div class="card_container">
+    <?php foreach ($grouped_menu as $menu_name => $menu_items) { ?>
+        <?php foreach ($menu_items as $d) { ?>
+            <label class="card_stockmenu">
+                <h3 class="nama_menu"><?php echo $d['NAMA_MENU']; ?></h3>
+                <table class="table table-bordered">
+                    <tr>
+                        <td>
+                            <?php echo $d['FOTO_MENU']; ?>
+                            <?php echo $d['STOCK_MENU']; ?>
+                        </td>
+                    </tr>
+                </table>
+                <h4 class="harga_menu">Rp<?php echo number_format($d['HARGA_MENU'], 0, ',', '.'); ?></h4>
+                <a href="#" class="tombol_edit_stock">Edit Menu</a>
+            </label>
+        <?php } ?>
+    <?php } ?>
+</div>
 
 <p class="Copyright">Copyright © Kelompok-4 PBL 2024</p>
+
 
 </body>
 </html>
