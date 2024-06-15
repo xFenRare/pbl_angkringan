@@ -19,6 +19,7 @@
 <body class="main_body">
 
 <div class="header_container">
+    
     <div class="main_header">
          
 
@@ -49,7 +50,7 @@
         <span class="bottom_line common"></span>
     </div>
     
-    <p class="main_text_segmen_menu"><i class="fa fa-archive" ></i> STOCK MENU</p>
+    <p class="main_text_segmen_menu"><i class="fas fa-clipboard-list" ></i> RIWAYAT </p>
         <div class="slide_menu">
 
             <div class="menu_content">
@@ -60,15 +61,15 @@
                         <li><a href="stock_menu" onclick="closeMenu()"> <i class="fa fa-archive" ></i>STOCK MENU</a></li>
                         <li><a href="pesanan" onclick="closeMenu()"> <i class="fa fa-bookmark" ></i>PESANAN</a></li>
                         <li><a href="riwayat" onclick="closeMenu()"> <i class="fas fa-clipboard-list" ></i>RIWAYAT</a></li>
-                        
+
                         <li><a href="#" onclick="showLogoutModal()" id="logoutButton"> <i class="fa fa-sign-out" ></i>LOG OUT</a></li>
                     </ul>
             </div>
         </div>
     </label>
 
+    
     <script>
-        
           function saveMenuStatus()
         {
             var isChecked = document.getElementById('toggleMenu').checked;
@@ -103,7 +104,7 @@
 
         document.getElementById('confirmLogout').addEventListener('click', function() 
         {
-            window.location.href = "<?php echo base_url('v_login.php'); ?>";
+            window.location.href = "<?php echo base_url('log_in.php'); ?>";
         });
 
        
@@ -143,7 +144,7 @@
 
         function logout() 
         {
-            window.location.href = "<?php echo base_url('login/v_login'); ?>";
+            window.location.href = "<?php echo base_url('log_in.php'); ?>";
         }
 
         function closeModal() 
@@ -160,44 +161,18 @@
     <p>Apakah Anda yakin ingin Log Out dari Akun ini?</p>
     <div>
     
-    <a class="tombol_confirm" href="<?php echo base_url('login');?>" id="confirmLogout">ya, aku mau Keluar</a>
+      <a class="tombol_confirm" type="button" href="log_in"  id="confirmLogout">ya, aku mau Keluar</a>
       <button class="tombol_batal" id="cancelLogout" onclick="closeModal()">gak jadi deh</button>
 
     </div>
   </div>
 </div>
 
-<label class="card_container">
-    
-    <?php foreach ($grouped_menu as $menu_name => $menu_items) { ?>
-        <?php foreach ($menu_items as $d) { ?>
-            <a href="#" class="card_stockmenu">
-                <h3 class="nama_menu"><?php echo $d['NAMA_MENU']; ?></h3>
-        
-                <table class="table table-bordered">
-                    <tr>
-                        <td> 
-                           
-                            <img src="<?php echo base_url($d['FOTO_MENU']); ?>" alt="Nama Gambar" width="280px" height="200px">
 
-                            <?php
-                                echo $d['STOCK_MENU']; 
-                            ?>
-                        </td>
-                
-                    </tr>
-                
-                <?php } ?>
-            </table>
-        <h4 class="harga_menu">Rp<?php echo number_format($d['HARGA_MENU'], 0, ',', '.'); ?></h4>
-    
-    <?php } ?>
-    </a>
-    
-</label>
+<p>Belum ada Fitur ini</p>
+
 
 <p class="Copyright">Copyright © Kelompok-4 PBL 2024</p>
-
 
 </body>
 </html>

@@ -84,9 +84,8 @@
             </div>
         </div>
     </label>
-
-    <script>
-        function saveMenuStatus() {
+        <script>
+    function saveMenuStatus() {
             var isChecked = document.getElementById('toggleMenu').checked;
             sessionStorage.setItem('menuOpen', isChecked ? 'true' : 'false');
         }
@@ -144,7 +143,7 @@
         function closeModal() {
             document.getElementById('logoutModal').style.display = 'none';
         }
-    </script>
+        </script>
 
     <div id="logoutModal" class="logout-option">
         <div class="logout-option_content">
@@ -189,7 +188,7 @@
         <p>Copyright © Kelompok-4 PBL 2024</p>
     </div>
 
-    <script>
+    < <script>
         let menuList = [];
 
         // Fetch menu data from the backend
@@ -223,40 +222,28 @@
 }
 
 function addOrder() {
-        const namaMenu = document.getElementById('nama_menu').value.trim();
-        const jumlahMenu = document.getElementById('jumlah_menu').value.trim();
+    const namaMenu = document.getElementById('nama_menu').value.trim();
+    const jumlah = document.getElementById('jumlah_menu').value.trim();
 
-        // Validasi input
-        if (namaMenu === '' || jumlahMenu === '') {
-            alert('Harap masukkan nama menu dan jumlah dengan benar.');
-            return;
-        }
-
-        // Periksa apakah nama menu ada di daftar menu
-        if (!menuList.includes(namaMenu)) {
-            alert(`Menu '${namaMenu}' tidak ada dalam daftar menu.`);
-            return;
-        }
-
-        // Tambahkan pesanan ke tabel pesanan
-        const orderTable = document.getElementById('order_table');
-        const newRow = orderTable.insertRow();
-        newRow.innerHTML = `
-            <td><p>${namaMenu}</p></td>
-            <td><p>${jumlahMenu}</p></td>
-            <td><p><a href="#" onclick="deleteOrder(this)"><i class="fa fa-trash"></i></a></p></td>
-        `;
-
-        // Bersihkan input setelah pesanan ditambahkan
-        document.getElementById('nama_menu').value = '';
-        document.getElementById('jumlah_menu').value = '';
+    if (namaMenu === '' || jumlah === '') {
+        alert('Nama Menu dan Jumlah harus diisi');
+        return;
     }
 
-    // Fungsi untuk menghapus baris pesanan dari tabel
-    function deleteRow(button) {
-        const row = button.closest('tr');
-        row.remove();
-    }
+    const orderTable = document.getElementById('order_table');
+    const newRow = document.createElement('tr');
+    newRow.innerHTML = `
+        <td><p class="isi_tabel_makanan">${namaMenu}</p></td>
+        <td><p class="isi_tabel_jumlah">${jumlah}</p></td>
+        <td><p><a href="#" onclick="deleteOrder(this)"><i class="fa fa-trash"></i></a></p></td>
+    `;
+    orderTable.appendChild(newRow);
+
+    document.getElementById('nama_menu').value = '';
+    document.getElementById('jumlah_menu').value = '';
+
+    calculateTotal();
+}
 
 function deleteOrder(row) {
     const rowIndex = row.parentNode.parentNode.parentNode.rowIndex;
@@ -275,4 +262,8 @@ function calculateTotal() {
 
     document.querySelector('.isi_tabel_total_harga').innerText = `Rp. ${total.toLocaleString()}`;
 }
-</script>
+</script></rows.length>
+
+</body>
+
+</html>

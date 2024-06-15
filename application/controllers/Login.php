@@ -1,17 +1,21 @@
 <?php
 
-class Login extends CI_Controller {
+class Login extends CI_Controller
+{
 
-    public function __construct(){
+    public function __construct()
+    {
         parent::__construct();
         $this->load->model('M_login');  // Load model M_login
     }
 
-    public function index(){
+    public function index()
+    {
         $this->load->view('v_login');
     }
 
-    public function login_aksi(){
+    public function login_aksi()
+    {
         // Mengambil input dari form dengan metode POST
         $user = $this->input->post('username', true);
         $pass = md5($this->input->post('password', true));
@@ -20,7 +24,7 @@ class Login extends CI_Controller {
         $this->form_validation->set_rules('username', 'Username', 'required');
         $this->form_validation->set_rules('password', 'Password', 'required');
 
-        if($this->form_validation->run() != FALSE){
+        if ($this->form_validation->run() != FALSE) {
             $where = array(
                 'username' => $user,
                 'password' => $pass
@@ -30,7 +34,7 @@ class Login extends CI_Controller {
             $cek_login_angkringan = $this->M_login->cek_login_angkringan($where);
             $cek_login_karyawan = $this->M_login->cek_login_karyawan($where);
 
-            if($cek_login_angkringan->num_rows() > 0){
+            if ($cek_login_angkringan->num_rows() > 0) {
                 $sess_data = array(
                     'username' => $user,
                     'login' => 'oke'
@@ -53,7 +57,7 @@ class Login extends CI_Controller {
                 // Redirect ke halaman tampil/karyawan
                 redirect(base_url('tampil/karyawan'));
             } else {
-                $this->session->set_flashdata('error', 'Username atau password salah!'); 
+                $this->session->set_flashdata('error', 'Username atau password salah!');
                 redirect(base_url("login"));
             }
         } else {

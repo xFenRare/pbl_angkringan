@@ -1,5 +1,4 @@
 <?php
-
 class M_login extends CI_Model {
 
     public function cek_login_angkringan($where) {
@@ -22,5 +21,16 @@ class M_login extends CI_Model {
         return $query;
     }
 
+    public function get_angkringan_id($username)
+    {
+        $this->db->select('id_angkringan'); // Sesuaikan dengan nama kolom yang benar
+        $this->db->where('username', $username);
+        $query = $this->db->get('angkringan');
+        if ($query->num_rows() > 0) {
+            return $query->row()->id_angkringan;
+        } else {
+            return false;
+        }
+    }
 }
 ?>
