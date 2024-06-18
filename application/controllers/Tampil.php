@@ -65,7 +65,9 @@ class Tampil extends CI_controller
 
     public function karyawan_admin()
     {
-        $this->load->view('karyawan_admin');
+        
+        $data['karyawan'] = $this->M_angkringan->get_all_karyawan();
+        $this->load->view('karyawan_admin', $data);
         $this->load->helper('url', 'file');
         
     }
@@ -104,6 +106,44 @@ class Tampil extends CI_controller
         $this->load->helper('url', 'file');
         
     }
+
+    public function update_karyawan() 
+{
+    $id = $this->input->post('id_karyawan');
+    $data = array(
+        'nama_karyawan' => $this->input->post('nama_karyawan'),
+        'alamat_karyawan' => $this->input->post('alamat'),
+        'no_telp_karyawan' => $this->input->post('no_telp'),
+        'username' => $this->input->post('username')
+    );
+    
+        $password = $this->input->post('password');
+        if (!empty($password)) 
+        {
+            $data['password'] = $password;
+        }
+    
+        $this->M_angkringan->update_karyawan($id, $data);
+        redirect('Tampil/karyawan_admin');
+    }
+    
+
+    public function hapus_karyawan($id)
+    {
+        if ($this->input->post('confirm') === 'true') {
+            $this->db->where('id_karyawan', $id);
+            $this->db->delete('karyawan');
+        }
+        redirect('Tampil/karyawan_admin');
+    }
+
+    public function tambah_karyawan()
+    {
+        $this->load->view('tambah_karyawan');
+        $this->load->helper('url', 'file');
+        
+    }
+
 
 }
 

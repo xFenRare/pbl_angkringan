@@ -50,7 +50,7 @@
         <span class="bottom_line common"></span>
     </div>
     
-    <p class="main_text_segmen_menu"><i class="fa fa-users" ></i> KARYAWAN <a href="tambah_menu" class="tombol_tambah_menu"> TAMBAH KARYAWAN</a></p>
+    <p class="main_text_segmen_menu"><i class="fa fa-users" ></i> KARYAWAN <a href="tambah_karyawan" class="tombol_tambah_menu"> TAMBAH KARYAWAN</a></p>
         <div class="slide_menu">
 
             <div class="menu_content">
@@ -153,9 +153,56 @@
             document.getElementById('logoutModal').style.display = 'none';
         }
 
+        function confirmDelete(id) {
+        var modal = document.getElementById('deleteModal');
+        modal.style.display = 'block';
+        document.getElementById('deleteConfirmButton').onclick = function() {
+            var form = document.createElement('form');
+            form.method = 'POST';
+            form.action = '<?php echo site_url('Tampil/hapus_karyawan/'); ?>' + id;
+
+            var input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = 'confirm';
+            input.value = 'true';
+            form.appendChild(input);
+
+            document.body.appendChild(form);
+            form.submit();
+        };
+    }
+
+    function closeDeleteModal() {
+        document.getElementById('deleteModal').style.display = 'none';
+    }
+
+    function showEditModal(id, nama, alamat, no_telp, username, password) {
+    var modal = document.getElementById('editModal');
+    document.getElementById('editId').value = id;
+    document.getElementById('editNama').value = nama;
+    document.getElementById('editAlamat').value = alamat;
+    document.getElementById('editNoTelp').value = no_telp;
+    document.getElementById('editUsername').value = username;
+    document.getElementById('editPassword').value = password;
+    modal.style.display = 'block';
+}
+
+    function closeEditModal() {
+        document.getElementById('editModal').style.display = 'none';
+    }
+
+    function toggleDetails(id) {
+    var details = document.getElementById('details_' + id);
+    if (details.style.display === 'none') {
+        details.style.display = 'block';
+    } else {
+        details.style.display = 'none';
+    }
+}
         
 
     </script>
+
 
 <div id="logoutModal" class="logout-option">
   <div class="logout-option_content">
@@ -169,38 +216,87 @@
   </div>
 </div>
 
+<div id="deleteModal" class="delete-modal">
+  <div class="delete-modal_content">
+    <p>emang ente yakin mau hapus ni karyawan ?</p>
+    <div>
+      <button class="tombol_confirm" id="deleteConfirmButton">iya, gw yakin</button>
+      <button class="tombol_batal" onclick="closeDeleteModal()">gak jadi deh wkwk</button>
+    </div>
+  </div>
+</div>
+
+<div id="editModal" class="edit-modal">
+  <div class="edit-modal_content">
+    <form method="post" action="<?php echo site_url('Tampil/update_karyawan'); ?>">
+        
+        <input class="input_edit_karyawan" type="hidden" id="editId" name="id_karyawan">
+        <p>Nama:</p>
+        <input class="input_edit_karyawan" type="text" id="editNama" name="nama_karyawan">
+        <p>Alamat:</p>
+        <input class="input_edit_karyawan" type="text" id="editAlamat" name="alamat">
+        <p>No Telepon:</p>
+        <input class="input_edit_karyawan" type="text" id="editNoTelp" name="no_telp">
+        <p>Username:</p>
+        <input class="input_edit_karyawan" type="text" id="editUsername" name="username">
+        <p>Password:</p>
+        <input class="input_edit_karyawan" type="password" id="editPassword" name="password">
+        <div>
+            <button class="tombol_confirm" type="submit">Simpan</button>
+            <button class="tombol_batal" type="button" onclick="closeEditModal()">Batal</button>
+        </div>
+    </form>
+  </div>
+</div>
+
+
+<label class="container_lagi">
+    <label class="container_label_karyawan_admin">
 <p class="nama_karyawan_admin">Nama Karyawan</p>
 <p class="edit_karyawan_admin">Edit</p>
 <p class="hapus_karyawan_admin">Hapus</p>
-<label class="container_lagi">
-    <label class="container_label_karyawan_admin">
+
         <label class="label_karyawan_admin">
             <div class="container_tabel_karyawan_admin">
                 <table class="tabel_karyawan_admin">
-    
-                    <tr>
-    
-                        <td>
-                            <p class="isi_nama_karyawan_admin">(Nama Karyawan)</p>
-                        </td>
-    
-                        <td>
-                            <a class="tombol_edit" href="#"><i class="fa fa-pencil"></i></a>
-                        </td>
-    
-                        <td>
-                            <a class="tombol_edit" href="#"><i class="fa fa-trash"></i></a>
-                        </td>
-    
-                    </tr>
 
+                <?php foreach ($karyawan as $k) : ?>
+                    <tr>
+    <td>
+        <p class="isi_nama_karyawan_admin"><a href="javascript:void(0);" onclick="toggleDetails('<?php echo $k->ID_KARYAWAN; ?>')"><i class='fas fa-angle-right'></i></a> <?php echo $k->NAMA_KARYAWAN; ?></p>
+        <div id="details_<?php echo $k->ID_KARYAWAN; ?>" clASS="details" style="display: none;">
+            <table class="tabel_detail_karyawan">
+                <tr>
+                    <td class="data_karyawan">Alamat:</td>
+                    <td class="data_karyawan_database"><?php echo $k->ALAMAT_KARYAWAN; ?></td>
+                </tr>
+                <tr>
+                    <td class="data_karyawan">No Telepon:</td>
+                    <td class="data_karyawan_database"><?php echo $k->NO_TELP_KARYAWAN; ?></td>
+                </tr>
+                <tr>
+                    <td class="data_karyawan">Username:</td>
+                    <td class="data_karyawan_database"><?php echo $k->USERNAME; ?></td>
+                </tr>
+                <tr>
+                    <td class="data_karyawan_bawah">Password:</td>
+                    <td class="data_karyawan_database_bawah"><?php echo $k->PASSWORD; ?></td>
+                </tr>
+            </table>
+        </div>
+    </td>
+    <td>
+        <a class="tombol_edit" href="#" onclick="showEditModal('<?php echo $k->ID_KARYAWAN; ?>', '<?php echo $k->NAMA_KARYAWAN; ?>', '<?php echo $k->ALAMAT_KARYAWAN; ?>', '<?php echo $k->NO_TELP_KARYAWAN; ?>', '<?php echo $k->USERNAME; ?>', '<?php echo $k->PASSWORD; ?>')"><i class="fa fa-pencil"></i></a>
+    </td>
+    <td>
+        <a class="tombol_edit" href="javascript:void(0);" onclick="confirmDelete(<?php echo $k->ID_KARYAWAN; ?>)"><i class="fa fa-trash"></i></a>
+    </td>
+</tr>
+                    <?php endforeach; ?>
                 </table>
             </div>
-    
-    
         </label>
     </label>
-
 </label>
 
     <p class="Copyright">Copyright © Kelompok-4 PBL 2024</p>
