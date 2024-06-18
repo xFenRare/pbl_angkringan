@@ -18,16 +18,20 @@
 
 <body class="main_body">
 
+<div class="header_container">
+    
     <div class="main_header">
          
 
-        <div class=container_main_title>
-            
-            <img class="main_title" src="<?php echo base_url('assets/images/main_title.png'); ?>" />
-        
-        </div>
-
-    </div>
+         <div class=container_main_title>
+             
+             <img class="main_title" src="<?php echo base_url('assets/images/main_title.png'); ?>" />
+         
+         </div>
+ 
+     </div>
+</div>
+    
 
 
     
@@ -46,23 +50,25 @@
         <span class="bottom_line common"></span>
     </div>
     
+    <p class="main_text_segmen_menu"><i class="fas fa-clipboard-list" ></i> RIWAYAT </p>
         <div class="slide_menu">
 
             <div class="menu_content">
-        
-                <p class="main_text_segmen_menu">KARYAWAN</p>
+                
                     <ul>
             
-                        <li><a href="index" onclick="closeMenu()"><i class="fa fa-bars" ></i>MENU</a></li>
-                        <li><a href="stock_menu" onclick="closeMenu()"> <i class="fa fa-archive" ></i>STOCK MENU</a></li>
-                        <li><a href="pesanan" onclick="closeMenu()"> <i class="fa fa-bookmark" ></i>PESANAN</a></li>
-                        <li><a href="karyawan" onclick="closeMenu()"> <i class="far fa-user" ></i>KARYAWAN</a></li>
+                    <li><a href="index" onclick="closeMenu()"><i class="fa fa-bars" ></i>MENU</a></li>
+                        <li><a href="stock_menu_karyawan" onclick="closeMenu()"> <i class="fa fa-archive" ></i>STOCK MENU</a></li>
+                        <li><a href="pesanan_karyawan" onclick="closeMenu()"> <i class="fa fa-bookmark" ></i>PESANAN</a></li>
+                        <li><a href="riwayat_karyawan" onclick="closeMenu()"> <i class="fas fa-clipboard-list" ></i>RIWAYAT</a></li>
+                        
                         <li><a href="#" onclick="showLogoutModal()" id="logoutButton"> <i class="fa fa-sign-out" ></i>LOG OUT</a></li>
                     </ul>
             </div>
         </div>
     </label>
 
+    
     <script>
           function saveMenuStatus()
         {
@@ -155,12 +161,48 @@
     <p>Apakah Anda yakin ingin Log Out dari Akun ini?</p>
     <div>
     
-      <a class="tombol_confirm" type="button" href="log_in"  id="confirmLogout">ya, aku mau Keluar</a>
+      <a class="tombol_confirm" type="button" href="<?php echo site_url('login/index'); ?>"  id="confirmLogout">ya, aku mau Keluar</a>
       <button class="tombol_batal" id="cancelLogout" onclick="closeModal()">gak jadi deh</button>
 
     </div>
   </div>
 </div>
+
+<p class="nama_pembeli_riwayat">Nama Pembeli</p>
+<p class="edit_riwayat">Edit</p>
+<p class="hapus_riwayat">Hapus</p>
+<label class="container_lagi">
+    <label class="container_label_riwayat">
+        <label class="label_riwayat">
+            <div class="container_tabel_riwayat">
+                <table class="tabel_riwayat">
+    
+                    <tr>
+    
+                        <td>
+                            <p class="isi_nama_pembeli">(Nama Pembeli)</p>
+                        </td>
+    
+                        <td>
+                            <a class="tombol_edit" href="#"><i class="fa fa-pencil"></i></a>
+                        </td>
+    
+                        <td>
+                            <a class="tombol_edit" href="#"><i class="fa fa-trash"></i></a>
+                        </td>
+    
+                    </tr>
+
+                </table>
+            </div>
+    
+    
+        </label>
+    </label>
+
+</label>
+
+    <p class="Copyright">Copyright © Kelompok-4 PBL 2024</p>
 
 </body>
 </html>

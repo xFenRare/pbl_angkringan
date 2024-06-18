@@ -126,7 +126,7 @@
             padding-left: 60px;
         }
 
-        a.card_stockmenu
+        .card_stockmenu
         {
             background-color: #937A62;
             
@@ -135,7 +135,7 @@
             margin: 10px;
             padding: 7px;
             border: 1px solid rgb(0, 0, 0, 0.2);
-
+            font-weight: bolder;
 
             z-index: 1;
             position: relative;
@@ -143,18 +143,18 @@
             text-transform: capitalize;
             text-decoration: none;
             color: #ffffff;
-            box-shadow: 5px 5px 5px rgb(0, 0, 0, 0.2);
+            box-shadow: 3px 3px 3px rgb(0, 0, 0, 0.2);
             transition: 0.2s ease;
             width: 320px;
             
             
         }
 
-        a.card_stockmenu:hover
+        .card_stockmenu:hover
         {
-            box-shadow: 1px 1px 1px rgb(0, 0, 0, 0.2);
+            box-shadow: 1px rgba(255, 255, 255, 0.5);
             background-color: #a5896f;
-            transform: translateY(-5px);
+            transform: translateY(-3px);
         }
 
         
@@ -255,6 +255,35 @@
         /*TEXT*//*TEXT*//*TEXT*/
         /*TEXT*//*TEXT*//*TEXT*/
         /*TEXT*//*TEXT*//*TEXT*/
+
+
+        .tombol_edit_stock
+        {
+            background-color: #3d3229;
+            padding: 5px;
+            border-radius: 5px;
+            text-decoration: none;
+            color:#acacac;
+            box-shadow: 2px 2px 2px rgb(0, 0, 0, 0.4);
+            margin-left: 65%;
+            transition: 0.2s ease;
+            display: block;
+            margin-bottom: 10px;
+            text-align: center;
+            margin-right: 10px;
+            
+            
+        }
+
+        .tombol_edit_stock:hover
+        {
+            box-shadow: 1px 1px 1px rgb(0, 0, 0, 0.2);
+            transform: translateY(-3px);
+            background-color: #2e261f;
+            color:#ffffff;
+
+
+        }
 
        .tombol_tambah_menu
        {
@@ -378,12 +407,17 @@
             color: #ffffff;
             text-align: center;
             user-select: none;
+            display: block;
+            justify-content: center;
+            align-items: end;
+            height: 100%;
             
         }
 
         .harga_menu
         {
             font-weight: lighter;
+            
         }
         
         /*GAMBAR*//*GAMBAR*//*GAMBAR*/
@@ -412,15 +446,19 @@
 
        /*Tabel Pesanan*/
 /* Menambahkan gaya pada tabel */
+
 table.tabel_pesanan {
     background-color: #eaeaea;
     border-radius: 10px;
-    width: 90%; /* Mengatur lebar tabel */
+    width: 80%; /* Mengatur lebar tabel */
     margin: 0 auto; /* Memusatkan tabel */
     font-size: 20px;
     font-weight: thin;
     text-align: center;
     border-collapse: collapse; /* Menghapus spasi antara sel */
+    position: relative;
+    margin-bottom: 20px;
+    
 }
 
 /* Menambahkan padding pada sel tabel */
@@ -438,28 +476,55 @@ table.tabel_pesanan th {
 
 
 /* Mengatur gaya untuk label */
-.label_pesanan {
+.label_pesanan 
+{
     display: flex;
     justify-content: center;
     padding-top: 10px;
+    flex-wrap: nowrap;
+    justify-content: center;
+    
 }
 
 /* Mengatur gaya untuk isi tabel */
-.isi_tabel_harga, .isi_tabel_total_harga {
+.isi_tabel_total_harga {
     background-color: #ffffff;
     border-radius: 10px;
     padding: 10px;
     margin: 5px;
     text-align: left;
+    padding-right: 0px;
+    
+}
+.isi_tabel_total_bayar {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 5px;
+    text-align: left;
+    width: 1000px;
 }
 
-.isi_tabel_pesanan
+.isi_tabel_makanan
 {
     background-color: #ffffff;
     border-radius: 10px;
     padding: 10px;
+    margin-right: 0px;
     margin: 5px;
     text-align: left;
+    align-self: center;
+    width: 1000px;
+}
+
+.isi_tabel_jumlah
+{
+    background-color: #937A62;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 5px;
+    text-align: left;
+    width: 200px;
 }
 
 /* Mengatur gaya untuk tautan dalam tabel */
@@ -471,6 +536,7 @@ table.tabel_pesanan th {
 /* Mengatur padding pada tabel pesanan */
 .tabel_pesanan td {
     padding-right: 10px;
+    
 }
 
 /* Menambahkan gaya pada kontainer tabel */
@@ -482,7 +548,7 @@ table.tabel_pesanan th {
 
 .input_container {
     text-align: center;
-    margin-top: 230px;
+    margin-top: 10px;
     margin-left: 60px;
     display: flex;
     
@@ -492,22 +558,23 @@ table.tabel_pesanan th {
 .input_nama_menu {
     display: block;
     visibility: visible;
-    width: 800px;
+    width: 1016px;
     padding: 10px;
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 5px;
     box-shadow: 3px 3px 3px rgb(0, 0, 0, 0.2);
     transition: 0.2s ease;
+    margin-left: 64px;
     
 }
 
 .tombol_tambah_pesanan
 {
-    background-color: #33ff00;
+    background-color: #99ff80;
     border-radius: 5px;
     text-decoration: none;
-    color: #ffffff;
+    color: #000000;
     padding: 10px;
     box-shadow: 3px 3px 3px rgb(0, 0, 0, 0.2);
     transition: 0.2s ease;
@@ -535,4 +602,498 @@ table.tabel_pesanan th {
     transform: translateY(-3px);
 }
 
-        
+.tombol_tambah_pesanan:hover
+{
+    color: rgb(255, 255, 255);
+    background-color: #00ff11;
+}
+.nama_kasir
+{
+    display: block;
+    visibility: visible;
+    width: 400px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px rgb(0, 0, 0, 0.2);
+    transition: 0.2s ease;
+    border-radius: 5px;
+    margin-right: 170px;
+    margin-left: 10px;
+    
+}
+
+.nama_pembeli
+{
+    display: block;
+    visibility: visible;
+    width: 400px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 3px 3px 3px rgb(0, 0, 0, 0.2);
+    transition: 0.2s ease;
+    margin-left: 18px;
+    border: 3px solid rgb(0, 0, 0);
+}
+
+.nama_pembeli:hover
+{
+    transform: translateY(-3px);
+    box-shadow: 1px 1px 1px rgb(0, 0, 0, 0.2);
+}
+
+.nama_kasir:hover
+{
+    transform: translateY(-3px);
+    box-shadow: 1px 1px 1px rgb(0, 0, 0, 0.2);
+}
+
+.text_kasir_n_pembeli
+{
+    margin-left: 10px;
+    justify-content: center;
+    font-size: 100%;
+    display: flex;
+    margin-top: 10px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.container_kasir_n_pembeli
+{
+    display: flex;
+    justify-content: center;
+    margin-top: 240px;
+    width: 100%;
+    flex-wrap: nowrap;
+    
+}
+
+.tombol_buat_pesanan
+{
+    text-align: center;
+    color: #ffffff;
+    text-decoration: none;
+
+    background-color: #00a6ff;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 5px;
+    padding-right: 0px;
+    margin-bottom: 10px;
+    
+    display: block;
+    box-shadow: 3px 3px 3px rgb(0, 0, 0, 0.2);
+    transition: 0.2s ease;
+    
+}
+
+.tombol_buat_pesanan:hover
+{
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+    transform: translateY(-3px);
+    color: #ffffff;
+    
+}
+
+
+/*RIWAYAT*//*RIWAYAT*//*RIWAYAT*/
+/*RIWAYAT*//*RIWAYAT*//*RIWAYAT*/
+/*RIWAYAT*//*RIWAYAT*//*RIWAYAT*/
+
+.container_lagi
+{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 270px;
+}
+
+.container_label_riwayat
+{
+
+    background-color: #EDE6C4;
+    display: flex;
+    width: 1300px;
+    justify-content: center;
+    border-radius: 5px; 
+    
+}
+
+.tabel_riwayat
+{
+    background-color: #eaeaea;
+    border-radius: 10px;
+    width: 80%; 
+    margin: 0 auto; 
+    font-size: 20px;
+    font-weight: thin;
+    text-align: center;
+    border-collapse: collapse;
+    position: relative;
+    margin-bottom: 20px;
+
+}
+
+/* Menambahkan padding pada sel tabel */
+table.tabel_riwayat td, table.tabel_riwayat th {
+    padding: 2px;
+}
+
+/* Mengatur gaya untuk header tabel */
+table.tabel_riwayat th {
+    background-color: #cccccc;
+    font-weight: bold;
+    
+}
+
+
+
+/* Mengatur gaya untuk label */
+.label_riwayat 
+{
+    display: flex;
+    justify-content: center;
+    padding-top: 70px;
+    flex-wrap: nowrap;
+    justify-content: center;
+    
+}
+
+/* Mengatur gaya untuk isi tabel */
+
+
+.isi_nama_pembeli
+{
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 10px;
+    margin-right: 0px;
+    margin: 5px;
+    text-align: left;
+    align-self: center;
+    width: 960px;
+}
+
+
+
+.tombol_edit
+{
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 5px;
+    text-align: center;
+    width: 300px;
+    padding-left: 50px;
+    padding-right: 50px;
+    
+}
+
+.tombol_edit:hover
+{
+    background-color: rgb(220, 220, 220);
+}
+
+/* Mengatur gaya untuk tautan dalam tabel */
+.tabel_riwayat td a {
+    text-decoration: none;
+    color: #000000;
+}
+
+/* Mengatur padding pada tabel pesanan */
+.tabel_riwayat td {
+    padding-right: 10px;
+    
+}
+
+/* Menambahkan gaya pada kontainer tabel */
+.container_tabel_riwayat 
+{
+
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+}
+
+.input_container {
+    text-align: center;
+    margin-top: 10px;
+    margin-left: 60px;
+    display: flex;
+    
+    
+}
+
+.input_nama_menu {
+    display: block;
+    visibility: visible;
+    width: 1016px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 3px 3px 3px rgb(0, 0, 0, 0.2);
+    transition: 0.2s ease;
+    margin-left: 64px;
+    
+}
+
+.tombol_tambah_riwayat
+{
+    background-color: #99ff80;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #000000;
+    padding: 10px;
+    box-shadow: 3px 3px 3px rgb(0, 0, 0, 0.2);
+    transition: 0.2s ease;
+    margin-left: 10px;
+    width: 128px;
+}
+
+.input_tambah_jumlah
+{
+    display: block;
+    visibility: visible;
+    width: 120px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-left: 10px;
+    box-shadow: 3px 3px 3px rgb(0, 0, 0, 0.2);
+    transition: 0.2s ease;
+}
+
+.tombol_tambah_riwayat:hover, .input_tambah_jumlah:hover, .input_nama_menu:hover
+{
+    box-shadow: 1px 1px 1px rgb(0, 0, 0, 0.2);
+    transform: translateY(-3px);
+}
+
+.tombol_tambah_riwayat:hover
+{
+    color: rgb(255, 255, 255);
+    background-color: #00ff11;
+}
+.nama_kasir
+{
+    display: block;
+    visibility: visible;
+    width: 400px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px rgb(0, 0, 0, 0.2);
+    transition: 0.2s ease;
+    border-radius: 5px;
+    margin-right: 170px;
+    margin-left: 10px;
+    
+}
+
+.nama_pembeli
+{
+    display: block;
+    visibility: visible;
+    width: 400px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 3px 3px 3px rgb(0, 0, 0, 0.2);
+    transition: 0.2s ease;
+    margin-left: 18px;
+    border: 3px solid rgb(0, 0, 0);
+}
+
+.nama_pembeli:hover
+{
+    transform: translateY(-3px);
+    box-shadow: 1px 1px 1px rgb(0, 0, 0, 0.2);
+}
+
+.nama_kasir:hover
+{
+    transform: translateY(-3px);
+    box-shadow: 1px 1px 1px rgb(0, 0, 0, 0.2);
+}
+
+.text_kasir_n_pembeli
+{
+    margin-left: 10px;
+    justify-content: center;
+    font-size: 100%;
+    display: flex;
+    margin-top: 10px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.container_kasir_n_pembeli
+{
+    display: flex;
+    justify-content: center;
+    margin-top: 240px;
+    width: 100%;
+    flex-wrap: nowrap;
+    
+}
+
+.tombol_buat_riwayat
+{
+    text-align: center;
+    color: #ffffff;
+    text-decoration: none;
+
+    background-color: #00a6ff;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 5px;
+    padding-right: 0px;
+    margin-bottom: 10px;
+    
+    display: block;
+    box-shadow: 3px 3px 3px rgb(0, 0, 0, 0.2);
+    transition: 0.2s ease;
+    
+}
+
+.tombol_buat_riwayat:hover
+{
+    box-shadow: 1px 1px 1px rgb(0, 0, 0, 0.2);
+    transform: translateY(-3px);
+    color: #ffffff;
+
+}
+
+.nama_pembeli_riwayat
+{
+    margin-left: 550px;
+    margin-top: 300px;
+    position: absolute;
+    font-weight: bold;
+    font-size: large;
+}
+
+.edit_riwayat
+{
+
+    margin-left: 1170px;
+    margin-top: 300px;
+    position: absolute;
+    font-size: large;
+    font-weight: bold;
+    
+}
+
+.hapus_riwayat
+{
+
+    margin-left: 1290px;
+    margin-top: 300px;
+    position: absolute;
+    font-size: large;
+    font-weight: bold;
+
+}
+
+
+/*KARYAWAN*//*KARYAWAN*//*KARYAWAN*/
+/*KARYAWAN*//*KARYAWAN*//*KARYAWAN*/
+/*KARYAWAN*//*KARYAWAN*//*KARYAWAN*/
+
+.isi_nama_karyawan_admin
+{
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 10px;
+    margin-right: 0px;
+    margin: 5px;
+    text-align: left;
+    align-self: center;
+    width: 960px;
+}
+
+.nama_karyawan_admin
+{
+    margin-left: 550px;
+    margin-top: 300px;
+    position: absolute;
+    font-weight: bold;
+    font-size: large;
+}
+
+.edit_karyawan_admin
+{
+    
+    margin-left: 1170px;
+    margin-top: 300px;
+    position: absolute;
+    font-size: large;
+    font-weight: bold;
+    
+    
+}
+
+.hapus_karyawan_admin
+{
+
+    margin-left: 1290px;
+    margin-top: 300px;
+    position: absolute;
+    font-size: large;
+    font-weight: bold;
+    
+}
+
+.container_label_karyawan_admin
+{
+    
+    background-color: #EDE6C4;
+    display: flex;
+    width: 1300px;
+    justify-content: center;
+    border-radius: 5px; 
+    
+}
+
+.label_karyawan_admin 
+{
+    display: flex;
+    justify-content: center;
+    padding-top: 70px;
+    flex-wrap: nowrap;
+    justify-content: center;
+    
+}
+
+.container_tabel_karyawan_admin 
+{
+
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    
+}
+
+.tabel_karyawan_admin
+{
+
+    background-color: #eaeaea;
+    border-radius: 10px;
+    width: 80%; 
+    margin: 0 auto; 
+    font-size: 20px;
+    font-weight: thin;
+    text-align: center;
+    border-collapse: collapse;
+    position: relative;
+    margin-bottom: 20px;
+
+}

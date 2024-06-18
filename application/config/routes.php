@@ -53,4 +53,9 @@ $route['default_controller'] = 'login';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['get_menu'] = 'MenuController/get_menu';
+// application/config/routes.php
+
+$route['get_stock_menu'] = 'MenuController/get_stock_menu';
+
+
 

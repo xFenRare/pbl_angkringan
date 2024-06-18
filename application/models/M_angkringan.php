@@ -9,7 +9,9 @@ class M_angkringan extends CI_model{
 
     public function tampil_data_angkringan()
     {
-        $query = $this->db->get('menu');
+        $this->db->select('*');
+        $this->db->from('menu');
+        $query = $this->db->get();
         return $query->result_array();
     }
 
@@ -17,12 +19,14 @@ class M_angkringan extends CI_model{
         $this->db->like('NAMA_MENU', $keyword);
         return $this->db->get('menu')->result_array();
     }
-    public function get_menu_by_angkringan_id($angkringan_id)
-{
-    $this->db->where('id_angkringan', $angkringan_id);
-    $query = $this->db->get('menu'); // Pastikan tabel menu memiliki kolom 'id_angkringan' sebagai foreign key
-    return $query->result_array();
-}
+    public function get_menu_by_angkringan_id($id_angkringan)
+    {
+        $this->db->select('*');
+        $this->db->from('menu');
+        $this->db->where('id_angkringan', $id_angkringan);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
 
 }
 ?>

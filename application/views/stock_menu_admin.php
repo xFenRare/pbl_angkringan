@@ -25,7 +25,7 @@
          <div class=container_main_title>
              
              <img class="main_title" src="<?php echo base_url('assets/images/main_title.png'); ?>" />
-         
+
          </div>
  
      </div>
@@ -56,10 +56,9 @@
                 
                     <ul>
             
-                        <li><a href="index" onclick="closeMenu()"><i class="fa fa-bars" ></i>MENU</a></li>
-                        <li><a href="stock_menu" onclick="closeMenu()"> <i class="fa fa-archive" ></i>STOCK MENU</a></li>
-                        <li><a href="pesanan" onclick="closeMenu()"> <i class="fa fa-bookmark" ></i>PESANAN</a></li>
-                        <li><a href="riwayat" onclick="closeMenu()"> <i class="fas fa-clipboard-list" ></i>RIWAYAT</a></li>
+                    <li><a href="stock_menu_admin" onclick="closeMenu()"> <i class="fa fa-archive" ></i>STOCK MENU</a></li>
+                        <li><a href="riwayat_admin" onclick="closeMenu()"> <i class="fas fa-clipboard-list" ></i>RIWAYAT</a></li>
+                        <li><a href="karyawan_admin" onclick="closeMenu()"> <i class="fa fa-users" ></i>KARYAWAN</a></li>
                         
                         <li><a href="#" onclick="showLogoutModal()" id="logoutButton"> <i class="fa fa-sign-out" ></i>LOG OUT</a></li>
                     </ul>
@@ -103,7 +102,7 @@
 
         document.getElementById('confirmLogout').addEventListener('click', function() 
         {
-            window.location.href = "<?php echo base_url('v_login.php'); ?>";
+            window.location.href = "<?php echo base_url('log_in.php'); ?>";
         });
 
        
@@ -143,7 +142,7 @@
 
         function logout() 
         {
-            window.location.href = "<?php echo base_url('login/v_login'); ?>";
+            window.location.href = "<?php echo base_url('log_in.php'); ?>";
         }
 
         function closeModal() 
@@ -160,7 +159,7 @@
     <p>Apakah Anda yakin ingin Log Out dari Akun ini?</p>
     <div>
     
-    <a class="tombol_confirm" href="<?php echo base_url('login');?>" id="confirmLogout">ya, aku mau Keluar</a>
+      <a class="tombol_confirm" type="button" href="<?php echo site_url('login/index'); ?>"  id="confirmLogout">ya, aku mau Keluar</a>
       <button class="tombol_batal" id="cancelLogout" onclick="closeModal()">gak jadi deh</button>
 
     </div>
@@ -176,11 +175,10 @@
         
                 <table class="table table-bordered">
                     <tr>
-                        <td> 
-                           
-                            <img src="<?php echo base_url($d['FOTO_MENU']); ?>" alt="Nama Gambar" width="280px" height="200px">
-
+                        <td>
+                        <img src="<?php echo base_url($d['FOTO_MENU']); ?>" alt="Nama Gambar" width="280px" height="200px">
                             <?php
+                               
                                 echo $d['STOCK_MENU']; 
                             ?>
                         </td>

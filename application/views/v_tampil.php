@@ -55,23 +55,25 @@
 
         <p class="main_text_segmen_menu">
     <i class="fa fa-bars"></i> MENU 
-    <a href="<?php echo base_url('upload'); ?>" class="tombol_tambah_menu">TAMBAH MENU</a>
+
 </p>
 <div class="slide_menu">
 
 
             <div class="menu_content">
 
-                <ul>
+    
+                    <ul>
+            
+                        <li><a href="index" onclick="closeMenu()"><i class="fa fa-bars" ></i>MENU</a></li>
+                        <li><a href="stock_menu_karyawan" onclick="closeMenu()"> <i class="fa fa-archive" ></i>STOCK MENU</a></li>
+                        <li><a href="pesanan_karyawan" onclick="closeMenu()"> <i class="fa fa-bookmark" ></i>PESANAN</a></li>
+                        <li><a href="riwayat_karyawan" onclick="closeMenu()"> <i class="fas fa-clipboard-list" ></i>RIWAYAT</a></li>
 
-                    <li><a href="index" onclick="closeMenu()"><i class="fa fa-bars"></i>MENU</a></li>
-                    <li><a href="stock_menu" onclick="closeMenu()"> <i class="fa fa-archive"></i>STOCK MENU</a></li>
-                    <li><a href="pesanan" onclick="closeMenu()"> <i class="fa fa-bookmark"></i>PESANAN</a></li>
-                    <li><a href="riwayat" onclick="closeMenu()"> <i class="fas fa-clipboard-list"></i>RIWAYAT</a></li>
+                        <li><a href="#" onclick="showLogoutModal()" id="logoutButton"> <i class="fa fa-sign-out" ></i>LOG OUT</a></li>
+                        
 
-                    <li><a href="#" onclick="showLogoutModal()" id="logoutButton"> <i class="fa fa-sign-out"></i>LOG
-                            OUT</a></li>
-                </ul>
+
             </div>
         </div>
     </label>
@@ -154,7 +156,7 @@
             <p>Apakah Anda yakin ingin Log Out dari Akun ini?</p>
             <div>
 
-                <a class="tombol_confirm" type="button" href="log_in" id="confirmLogout">ya, aku mau Keluar</a>
+                <a class="tombol_confirm" type="button" href="<?php echo site_url('login/index'); ?>" id="confirmLogout">ya, aku mau Keluar</a>
                 <button class="tombol_batal" id="cancelLogout" onclick="closeModal()">gak jadi deh</button>
 
             </div>
