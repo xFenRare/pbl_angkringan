@@ -7,6 +7,7 @@ class MenuController extends CI_Controller
     {
         parent::__construct();
         $this->load->model('MenuModel');
+        $this->load->model('M_login');
     }
 
     public function get_menu()
@@ -14,21 +15,47 @@ class MenuController extends CI_Controller
         $result = $this->MenuModel->get_all_menus();
         echo json_encode($result);
     }
+
     public function buat_pesanan()
-{
-    $order_data = $this->input->post('order_data'); // Ambil data pesanan dari POST request
+    {
+        header('Content-Type: application/json');
+        $input = json_decode(file_get_contents('php://input'), true);
 
-    // Panggil method create_order dari MenuModel untuk membuat pesanan
-    $id_pemesanan = $this->MenuModel->create_order($order_data);
+        if (!$input) {
+            echo json_encode(['error' => 'Invalid JSON']);
+            return;
+        }
 
-    // Response JSON untuk memberitahu ID pemesanan yang baru saja dibuat
-    $response = array(
-        'id_pemesanan' => $id_pemesanan,
-        'message' => 'Pesanan berhasil dibuat'
-    );
+        // Validasi data
+        $nama_pembeli = $input['nama_pembeli'];
+        $total_pembelian = $input['total_pembelian'];
+        $orders = $input['orders'];
 
-    echo json_encode($response);
-}
+        // Ambil ID_KARYAWAN dari session
+        $username = $this->session->userdata('username');
+        $id_karyawan = $this->M_login->get_karyawan_id($username);
 
+        if (!$id_karyawan) {
+            echo json_encode(['error' => 'ID_KARYAWAN is required']);
+            return;
+        }
+
+        // Cek stok sebelum menyimpan pesanan
+        foreach ($orders as $order) {
+            if (!$this->MenuModel->check_stock($order)) {
+                echo json_encode(['error' => 'Stok untuk menu ' . $order['nama_menu'] . ' tidak mencukupi']);
+                return;
+            }
+        }
+
+        // Lakukan penyimpanan ke dalam database
+        $result = $this->MenuModel->create_order($input);
+
+        if (isset($result['error'])) {
+            echo json_encode(['error' => $result['error']]);
+        } else {
+            echo json_encode(['id_pemesanan' => $result['id_pemesanan'], 'message' => $result['message']]);
+        }
+    }
 }
 ?>

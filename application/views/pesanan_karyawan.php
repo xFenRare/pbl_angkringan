@@ -198,7 +198,7 @@
                 <tr>
                     <td></td>
                     <td>
-                        <p><a class="tombol_buat_pesanan" href="#">Buat Pesanan</a></p>
+                    <p><a class="tombol_buat_pesanan" href="#" onclick="buatPesanan()">Buat Pesanan</a></p>
                     </td>
                     <td></td>
                 </tr>
@@ -212,6 +212,8 @@
 
     <script>
     let menuList = [];
+    let menus = [];
+
 
     // Fungsi untuk mendapatkan data menu dari backend (contoh penggunaan fetch)
     fetch("<?php echo base_url('get_menu'); ?>")
@@ -249,62 +251,67 @@
     }
 
     function addOrder() {
-        const namaMenu = document.getElementById('nama_menu').value.trim();
-        const jumlah = document.getElementById('jumlah_menu').value.trim();
+    const namaMenu = document.getElementById('nama_menu').value.trim();
+    const jumlah = document.getElementById('jumlah_menu').value.trim();
+    
 
-        // Validasi input
-        if (namaMenu === '' || jumlah === '') {
-            alert('Nama Menu dan Jumlah harus diisi');
-            return;
-        }
-
-        if (isNaN(jumlah) || parseInt(jumlah) <= 0) {
-            alert('Jumlah harus berupa angka yang lebih besar dari 0');
-            return;
-        }
-
-        const jumlahInt = parseInt(jumlah);
-
-        if (jumlahInt > 1000) {
-            alert('Jumlah tidak boleh lebih dari 1000');
-            return;
-        }
-
-        const menu = menuList.find(menu => menu.nama_menu === namaMenu);
-        if (!menu) {
-            alert('Menu tidak ditemukan');
-            return;
-        }
-
-        if (jumlahInt > menu.stock_menu) {
-            alert('Jumlah melebihi stok yang tersedia');
-            return;
-        }
-
-        const orderTable = document.getElementById('order_table');
-        const newRow = orderTable.insertRow(orderTable.rows.length - 2);
-
-        const cell1 = newRow.insertCell(0);
-        const cell2 = newRow.insertCell(1);
-        const cell3 = newRow.insertCell(2);
-
-        cell1.innerHTML = `<p class="isi_tabel_makanan">${namaMenu}</p>`;
-        cell2.innerHTML = `<p class="isi_tabel_jumlah">${jumlah}</p>`;
-        cell3.innerHTML = `<p><a href="#" onclick="deleteOrder(this)"><i class="fa fa-trash"></i></a></p>`;
-
-        // Reset nilai input
-        document.getElementById('nama_menu').value = '';
-        document.getElementById('jumlah_menu').value = '';
-
-        const hargaMenu = parseFloat(menu.harga_menu);
-
-        if (isNaN(hargaMenu) || hargaMenu <= 0) {
-            alert('Harga menu tidak valid');
-            return;
-        }
-
-        calculateTotal();
+    // Validasi input
+    if (namaMenu === '' || jumlah === '') {
+        alert('Nama Menu dan Jumlah harus diisi');
+        return;
     }
+
+    if (isNaN(jumlah) || parseInt(jumlah) <= 0) {
+        alert('Jumlah harus berupa angka yang lebih besar dari 0');
+        return;
+    }
+
+    const jumlahInt = parseInt(jumlah);
+
+    if (jumlahInt > 1000) {
+        alert('Jumlah tidak boleh lebih dari 1000');
+        return;
+    }
+
+    const menu = menuList.find(menu => menu.nama_menu === namaMenu);
+    if (!menu) {
+        alert('Menu tidak ditemukan');
+        return;
+    }
+
+    if (jumlahInt > menu.stock_menu) {
+        alert('Jumlah melebihi stok yang tersedia');
+        return;
+    }
+    const isMenuExist = menus.some(function (menu) {
+        return menu.nama === namaMenu;
+    });
+
+    if (isMenuExist) {
+        alert("Menu sudah ditambahkan."); // Pesan peringatan
+        return;
+    }
+
+    // Tambahkan menu ke array menus
+    menus.push({ nama: namaMenu, jumlah: jumlahInt });
+    
+    const orderTable = document.getElementById('order_table');
+    const newRow = orderTable.insertRow(orderTable.rows.length - 2);
+
+    const cell1 = newRow.insertCell(0);
+    const cell2 = newRow.insertCell(1);
+    const cell3 = newRow.insertCell(2);
+
+    cell1.innerHTML = `<p class="isi_tabel_makanan">${namaMenu}</p>`;
+    cell2.innerHTML = `<p class="isi_tabel_jumlah">${jumlah}</p>`;
+    cell3.innerHTML = `<p><a href="#" onclick="deleteOrder(this)"><i class="fa fa-trash"></i></a></p>`;
+
+    // Reset nilai input
+    document.getElementById('nama_menu').value = '';
+    document.getElementById('jumlah_menu').value = '';
+
+    calculateTotal();
+}
 
     function deleteOrder(row) {
         const rowIndex = row.parentNode.parentNode.parentNode.rowIndex;
@@ -337,32 +344,86 @@
         const totalBayarElement = document.querySelector('.isi_tabel_total_harga');
         totalBayarElement.textContent = `Rp. ${totalBayar.toFixed(2)}`;
     }
-    document.querySelector('.tombol_buat_pesanan').addEventListener('click', function (event) {
-    event.preventDefault(); // Mencegah pengiriman form secara default
 
-    // Ambil data yang dibutuhkan untuk pesanan
-    const orderData = gatherOrderData(); // Fungsi untuk mengumpulkan data pesanan dari tabel
+    function buatPesanan() {
+        const namaPembeli = document.querySelector('.nama_pembeli').value.trim();
+    
+    // Validasi input nama pembeli
+    if (namaPembeli === '') {
+        alert('Nama pembeli harus diisi');
+        return;
+    }
+    
+        const orderRows = document.querySelectorAll('#order_table tr:not(:last-child)');
+    let orders = [];
+    let totalBayar = 0;
 
-    // Kirim permintaan AJAX untuk membuat pesanan
-    fetch('<?php echo base_url('MenuController/buat_pesanan'); ?>', {
+    orderRows.forEach(row => {
+        const namaMenuElement = row.querySelector('.isi_tabel_makanan');
+        const jumlahElement = row.querySelector('.isi_tabel_jumlah');
+
+        if (namaMenuElement && jumlahElement) {
+            const namaMenu = namaMenuElement.textContent.trim();
+            const jumlah = parseInt(jumlahElement.textContent);
+
+            if (namaMenu && jumlah) {
+                orders.push({ nama_menu: namaMenu, jumlah: jumlah });
+                const menu = menuList.find(menu => menu.nama_menu === namaMenu);
+                if (menu) {
+                    totalBayar += menu.harga_menu * jumlah;
+                }
+            }
+        }
+    });
+ 
+    
+   
+    const orderData = {
+        nama_pembeli: namaPembeli,
+        total_pembelian: totalBayar,
+        orders: orders
+    };
+
+    fetch("<?php echo base_url('MenuController/buat_pesanan'); ?>", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ order_data: orderData })
+        body: JSON.stringify(orderData)
     })
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
     .then(data => {
-        console.log('Response:', data);
-        alert('Pesanan berhasil dibuat! ID Pemesanan: ' + data.id_pemesanan);
-        // Lakukan tindakan tambahan jika diperlukan, misalnya mengosongkan tabel pesanan
-        clearOrderTable();
+        if (data.id_pemesanan) {
+            alert('Pesanan berhasil dibuat');
+
+            // Reset input nama pembeli
+            document.querySelector('.nama_pembeli').value = '';
+
+            // Hapus semua baris pesanan dari tabel
+            const orderTable = document.getElementById('order_table');
+            const rowCount = orderTable.rows.length - 3; // Menghitung jumlah baris pesanan
+            for (let i = 0; i < rowCount; i++) {
+                orderTable.deleteRow(1); // Hapus baris ke-1 (indeks 0) setiap kali
+            }
+
+            // Reset total bayar
+            document.querySelector('.isi_tabel_total_harga').textContent = 'Rp. 0.00';
+        } else {
+            alert('Gagal membuat pesanan: ' + (data.error || 'Unknown error'));
+        }
     })
     .catch(error => {
         console.error('Error:', error);
-        alert('Terjadi kesalahan saat membuat pesanan');
+        alert('Terjadi kesalahan saat membuat pesanan: ' + error.message);
     });
-});
+}
+
+
 </script>
 </body>
 

@@ -132,10 +132,11 @@
                         autocomplete="off" required>
                 </div>
                 <a href="forgot_password.php" class="btn-forgot">
-                    <p>Lupa password?</p>
+                    <p><br></p>
                 </a>
                 <button type="submit" class="btn-login">LOGIN</button>
-                <button type="button" class="regis" onclick="window.location.href='tampil/v_daftar';">DAFTAR</button>
+                <button type="button" class="regis" onclick="window.location.href='<?php echo site_url('tampil/v_daftar'); ?>'">DAFTAR</button>
+
             </div>
         </form>
     </div>

@@ -127,9 +127,11 @@
             <input type="text" id="alamat" name="alamat" placeholder="Alamat" class="form-control" required>
         </div>
         <div class="input-group">
-            <span class="input-group-text"><i class="fas fa-phone"></i></span>
-            <input type="text" id="no_telp_angkringan" name="no_telp_angkringan" placeholder="No Telp" class="form-control" required>
-        </div>
+    <span class="input-group-text"><i class="fas fa-phone"></i></span>
+    <input type="text" id="no_telp_angkringan" name="no_telp_angkringan" placeholder="No Telp" class="form-control" 
+           pattern="[0-9]{11,15}" title="Nomor telepon harus terdiri dari 11 hingga 15 digit angka" required>
+</div>
+
         <button type="submit" class="btn-login">DAFTAR</button>
         <button onclick="window.location.href='<?php echo base_url('login'); ?>';" class="btn-register"><i class="fas fa-arrow-left"></i> BACK</button>
     </form>
@@ -149,6 +151,7 @@
             eyeIcon.classList.add("fa-eye-slash");
         }
     });
+    
 </script>
 </body>
 </html>

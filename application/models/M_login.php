@@ -49,5 +49,18 @@ class M_login extends CI_Model {
         return null;
     }
 } 
+
+public function get_angkringan_id_by_username($username)
+{
+    $this->db->select('id_angkringan');
+    $this->db->where('username', $username);
+    $query = $this->db->get('angkringan');
+    if ($query->num_rows() > 0) {
+        return $query->row()->id_angkringan;
+    } else {
+        return false;
+    }
+}
+
 }
 ?>

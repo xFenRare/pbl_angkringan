@@ -7,76 +7,89 @@ class MenuModel extends CI_Model
     {
         parent::__construct();
         $this->load->database();
+        $this->load->model('M_login'); // Load M_login model
     }
 
     public function get_all_menus()
-{
-    $id_angkringan = $this->get_angkringan_id_for_current_user(); // Mengambil id_angkringan berdasarkan karyawan yang login
-
-    $this->db->select('id_menu, nama_menu, stock_menu, harga_menu'); // Menambahkan kolom harga_menu
-    $this->db->from('menu');
-    $this->db->where('id_angkringan', $id_angkringan);
-    $query = $this->db->get();
-    
-    return $query->result();
-    
-    
-}
-
+    {
+        $id_angkringan = $this->get_angkringan_id_for_current_user();
+        $this->db->select('id_menu, nama_menu, stock_menu, harga_menu');
+        $this->db->from('menu');
+        $this->db->where('id_angkringan', $id_angkringan);
+        $query = $this->db->get();
+        
+        return $query->result();
+    }
 
     private function get_angkringan_id_for_current_user()
     {
-        // Ambil username dari sesi
         $username = $this->session->userdata('username');
-
-        // Panggil M_login untuk mendapatkan id_angkringan berdasarkan username karyawan
         $karyawan_id = $this->M_login->get_karyawan_id($username);
+        
         if ($karyawan_id) {
             $id_angkringan = $this->M_login->get_angkringan_id_by_karyawan_id($karyawan_id);
             if ($id_angkringan) {
                 return $id_angkringan;
             } else {
-                // Jika tidak ditemukan id_angkringan untuk karyawan ini
-                return null; // Atau lakukan penanganan kesalahan sesuai kebutuhan Anda
+                return null; // Handle error accordingly
             }
         } else {
-            // Jika tidak ditemukan karyawan dengan username ini
-            return null; // Atau lakukan penanganan kesalahan sesuai kebutuhan Anda
+            return null; // Handle error accordingly
         }
     }
+
     public function create_order($order_data)
-{
-    $id_angkringan = $this->get_angkringan_id_for_current_user(); // Ambil ID Angkringan dari model
-    $waktu_pemesanan = date('Y-m-d H:i:s'); // Waktu pemesanan saat ini
-    $total_pembelian = 0; // Inisialisasi total pembelian
-    
-    // Hitung total pembelian berdasarkan order_data yang diterima
-    foreach ($order_data as $order) {
-        $total_pembelian += $order['jumlah'] * $order['harga_menu'];
-    }
+    {
+        $this->db->trans_start(); // Start transaction
 
-    // Data untuk dimasukkan ke dalam tabel pemesanan
-    $data = array(
-        'id_angkringan' => $id_angkringan,
-        'waktu_pemesanan' => $waktu_pemesanan,
-        'total_pembelian' => (int)$total_pembelian // Pastikan total_pembelian diubah ke integer sebelum dimasukkan ke database
-    );
-
-    // Masukkan data ke dalam tabel pemesanan
-    $this->db->insert('pemesanan', $data);
-    $id_pemesanan = $this->db->insert_id(); // Ambil ID pemesanan yang baru saja dimasukkan
-
-    // Masukkan detail pesanan ke dalam tabel pemesanan_detail
-    foreach ($order_data as $order) {
-        $order_detail = array(
-            'id_pemesanan' => $id_pemesanan,
-            'id_menu' => $order['id_menu'],
-            'jumlah' => $order['jumlah']
+        // Insert order into pemesanan table
+        $data_pembelian = array(
+            'ID_KARYAWAN' => $this->M_login->get_karyawan_id($this->session->userdata('username')),
+            'WAKTU_PEMBELIAN' => date('Y-m-d H:i:s'),
+            'NAMA_PEMBELI' => $order_data['nama_pembeli'],
+            'TOTAL_PEMBELIAN' => $order_data['total_pembelian']
         );
-        $this->db->insert('pemesanan_detail', $order_detail);
+        $this->db->insert('pemesanan', $data_pembelian);
+        $id_pemesanan = $this->db->insert_id();
+
+        // Insert order details into detail_pesanan table
+        foreach ($order_data['orders'] as $order) {
+            // Reduce stock in menu table
+            $this->db->set('stock_menu', 'stock_menu - ' . $order['jumlah'], FALSE);
+            $this->db->where('nama_menu', $order['nama_menu']);
+            $this->db->update('menu');
+
+            // Insert order detail
+            $data_detail = array(
+                'ID_PEMESANAN' => $id_pemesanan,
+                'NAMA_MENU' => $order['nama_menu'],
+                'JUMLAH' => $order['jumlah']
+            );
+            $this->db->insert('detail_pesanan', $data_detail);
+        }
+
+        $this->db->trans_complete(); // Complete transaction
+
+        if ($this->db->trans_status() === FALSE) {
+            return array('error' => 'Failed to save order');
+        } else {
+            return array('id_pemesanan' => $id_pemesanan, 'message' => 'Pesanan berhasil dibuat');
+        }
     }
 
-    return $id_pemesanan; // Kembalikan ID pemesanan yang baru saja dibuat
-}
+    public function check_stock($order)
+    {
+        $this->db->select('stock_menu');
+        $this->db->from('menu');
+        $this->db->where('nama_menu', $order['nama_menu']);
+        $query = $this->db->get();
+        $result = $query->row();
+
+        if ($result && $result->stock_menu >= $order['jumlah']) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
 ?>

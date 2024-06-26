@@ -36,7 +36,7 @@ class Upload extends CI_Controller
         $config['upload_path'] = './assets/images/';
         $config['allowed_types'] = 'gif|jpg|png';
         $config['max_size'] = 10240; // Ukuran maksimum dalam kilobita
-        $config['encrypt_name'] = TRUE; // Enkripsi nama file
+    
 
         $this->upload->initialize($config);
 
@@ -68,7 +68,7 @@ class Upload extends CI_Controller
 
             // Redirect atau tampilkan view sukses upload
             $this->session->set_flashdata('success', 'Menu berhasil ditambahkan');
-            redirect(base_url('tampil/index')); // Menggunakan base_url untuk mengarahkan kembali ke halaman tampil
+            redirect(base_url('tampil/stock_menu_karyawan')); // Menggunakan base_url untuk mengarahkan kembali ke halaman tampil
         }
     }
 }

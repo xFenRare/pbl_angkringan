@@ -61,7 +61,7 @@ class Login extends CI_Controller
 
                 // Mengatur data sesi
                 $this->session->set_userdata($sess_data);
-
+                
                 // Redirect ke halaman tampil/index
                 redirect(base_url('tampil/index'));
             } else {
